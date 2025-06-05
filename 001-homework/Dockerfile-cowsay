@@ -1,0 +1,21 @@
+FROM debian:12-slim
+LABEL com.example.workshop="0.0.1-beta"
+
+RUN apt update \
+    && apt install -y cowsay \
+    && rm -rf /var/lib/apt/lists/*
+
+ENTRYPOINT ["/bin/bash", "-c"]
+#CMD ["/usr/games/cowsay \"sup\""]
+CMD ["/usr/games/cowsay $(cat /passthrough/cowsay-passfile) >> /passthrough/cowsay-passfile"]
+
+# 2. docker build -t cowsay -f ./Dockerfile-cowsay .
+
+# 3. docker run --rm cowsay
+
+# 4. CMD ["/usr/games/cowsay $(more /etc/hosts)"]
+
+# 5. CMD ["/usr/games/cowsay $(more /passthrough/cowsay-passfile)"]
+# 5. docker run  --rm -v .:/passthrough cowsay
+
+# 6. CMD ["/usr/games/cowsay $(cat /passthrough/cowsay-passfile) >> /passthrough/cowsay-passfile"]
