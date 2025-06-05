@@ -7,7 +7,7 @@ RUN apt update \
 
 ENTRYPOINT ["/bin/bash", "-c"]
 #CMD ["/usr/games/cowsay \"sup\""]
-CMD ["/usr/games/cowsay $(cat /passthrough/cowsay-passfile) >> /passthrough/cowsay-passfile"]
+CMD ["/usr/games/cowsay $(cat /cowsay-passfile) >> /cowsay-passfile"]
 
 # 2. docker build -t cowsay -f ./Dockerfile-cowsay .
 
@@ -16,6 +16,6 @@ CMD ["/usr/games/cowsay $(cat /passthrough/cowsay-passfile) >> /passthrough/cows
 # 4. CMD ["/usr/games/cowsay $(more /etc/hosts)"]
 
 # 5. CMD ["/usr/games/cowsay $(more /passthrough/cowsay-passfile)"]
-# 5. docker run  --rm -v .:/passthrough cowsay
+# 5. docker run  --rm -v ./cowsay-passfile:/cowsay-passfile cowsay
 
 # 6. CMD ["/usr/games/cowsay $(cat /passthrough/cowsay-passfile) >> /passthrough/cowsay-passfile"]
