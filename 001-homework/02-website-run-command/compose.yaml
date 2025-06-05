@@ -1,0 +1,10 @@
+services:
+  web:
+    container_name: fhw-nginx
+    volumes:
+      - ./data:/www/data
+      - ./conf.d:/etc/nginx/conf.d
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    ports:
+      - 8080:80
+    image: nginx:latest
