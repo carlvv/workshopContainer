@@ -1,0 +1,6 @@
+services:
+  web:
+    container_name: boothello
+    ports:
+      - 3000:8080
+    image: herrsorgenfrei/boothello
