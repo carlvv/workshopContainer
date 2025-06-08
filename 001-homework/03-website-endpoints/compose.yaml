@@ -1,10 +1,20 @@
 services:
   web:
     ports:
-      - 3000:8080
+      - 3030:8080
     image: herrsorgenfrei/boothello
+    networks:
+      - boothello
   get:
     image: alpine/curl
-    command: "curl 127.0.0.1:8080/api/helloworld/name"
+    command: "curl web:3000/api/helloworld/name"
+    ports:
+      - 8080:3030
     depends_on:
       - web
+    networks:
+      - boothello
+
+networks:
+  boothello:
+    driver: bridge
